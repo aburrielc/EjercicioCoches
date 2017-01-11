@@ -20,17 +20,34 @@ public class EjercicioCoches {
         Coche coche1 = new Coche("Hola",0);
         
         do{
-            do{
-                Menu.pintaAcciones();
-                accion = leer.nextInt();
-            }while(accion < 1 || accion > 2);
+            System.out.println("");
+            System.out.println(coche1);
             
-            if(accion == 1){
-                coche1.acelerar();
+            if(coche1.getEstado().equalsIgnoreCase("TERMINADO")){
+                System.out.println("");
+                System.out.println("Se ha acabado la carrera");
+                finCarrera = true;
             }else{
-                coche1.frenar();
+                do{
+                    Menu.pintaAcciones();
+                    accion = leer.nextInt();
+                }while(accion < 1 || accion > 4);
+
+                switch(accion){
+                    case 1:
+                        coche1.arrancar();
+                        break;
+                    case 2:
+                        coche1.acelerar();
+                        break;
+                    case 3:
+                        coche1.frenar();
+                        break;
+                    case 4:
+                        coche1.rearrancar(finCarrera);
+                        break;
+                }
             }
-            
         }while(!finCarrera);
     }
 }
